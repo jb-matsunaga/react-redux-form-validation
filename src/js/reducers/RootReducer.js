@@ -1,8 +1,9 @@
 import {combineReducers} from 'redux';
-import Modal from './Modal';
+import modalReducer from './Modal';
+console.log('modalReducer = ' + modalReducer);
 
 const App = combineReducers({
-    Modal,
+    modalReducer,
 });
 
 export default App;

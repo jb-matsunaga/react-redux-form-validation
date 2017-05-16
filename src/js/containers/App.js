@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Modal from '../components/Modal';
 import {modalOpen} from '../actions/Modal'
 
-class App extends Component {
+class App extends React.Component {
     componentWillMount() {}
 
     handleModalOpen() {
@@ -19,16 +19,21 @@ class App extends Component {
         const {show} = this.props;
         return(
             <div>
-                <h1>Modal</h1>
-                <button onClick={this.handleModalOpen.bind(this)}>Modal Open</button>
-                <Modal
-                handleModalOpen={this.handleModalOpen.bind(this)}
-                handleClickClose={this.handleModalClose.bind(this)}
-                show={show}
-                title='modalテスト'>
-                モーダル内容
-                </Modal>
-            </div>
+        <div className="l-wrapper">
+          <div className="c-container">
+            <h1 className="c-title c-title--primary">Modal</h1>
+            <button className="c-btn c-btn-primary--flat" onClick={this.handleModalOpen.bind(this)}>Modal Open</button>
+            <Modal
+              handleModalOpen={this.handleModalOpen.bind(this)}
+              handleModalClose={this.handleModalClose.bind(this)}
+              show={show}
+              title='modalテスト'
+            >
+              モーダル内容
+            </Modal>
+          </div>
+        </div>
+      </div>
         )
     }
 }
@@ -36,8 +41,10 @@ class App extends Component {
 // modalのstateが変更されたことを受け取る
 // Viewではstateをpropsに渡して使うようになる
 function mapStateToProps(state) {
+    console.log('state = ' + state);
+    console.dir(state);
     return {
-        show: state.Modal.show
+        show: state.modalReducer.show
     }
 }
 
@@ -45,4 +52,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(Object.assign({}, {modalOpen}), dispatch);
 }
 
-export default connent(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
