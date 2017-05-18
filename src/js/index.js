@@ -4,8 +4,10 @@ import {Provider} from 'react-redux';
 import configureStore from './store/reduxStore';
 import App from './containers/app';
 
+const store = configureStore();
+
 render(
-  <Provider>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('fn-root')

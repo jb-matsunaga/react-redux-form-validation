@@ -10,4 +10,4 @@ export function modalOpen(dec) {
         type: ActionTypes.MODAL_OPEN,
         show: dec
     }
-}
+};
